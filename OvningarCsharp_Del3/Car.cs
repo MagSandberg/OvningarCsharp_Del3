@@ -3,13 +3,26 @@ using System.Xml.Linq;
 
 namespace OvningarCsharp_Del3;
 
+
 public class Car
 {
     //.29
+    private int _length;
+    public int Length
+    {
+        get { return _length; }
+        set { _length = value; }
+    }
+
     private string _color;
-    private string _length;
-    
-    public enum Color
+
+    public string Color
+    {
+        get { return _color; }
+        set { _color = value; }
+    }
+
+    public enum Colors
     {
         Red,
         Green,
@@ -18,28 +31,13 @@ public class Car
         Black
     }
 
-    private Random rndLength = new Random();
-    private Random rndColor = new Random();
-    public void RandomColor()
-    {
-        Enum carRndColor = (Color)rndColor.Next(0, 4);
-        string myRndColor = carRndColor.ToString();
-        _color = myRndColor;
-    }
-    public void RandomLength()
-    {
-        var carRndLength = rndLength.Next(3, 5);
-        string myRndLength = carRndLength.ToString();
-        _length = myRndLength;
-    }
-
-    public void RandomValues()
-    {
-        Console.WriteLine($"{_color}, {_length}");
-    }
-
     //Constructor
     public Car()
     {
+        Random rand = new Random();
+
+        Enum myColor = (Colors)rand.Next(0, 5);
+        Color = myColor.ToString();
+        Length = rand.Next(3, 5);
     }
 }
